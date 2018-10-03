@@ -35,26 +35,26 @@ import javax.resource.spi.endpoint.MessageEndpointFactory;
 import javax.transaction.xa.XAResource;
 
 /**
- * AcmeResourceAdapter
+ * RestResourceAdapter
  *
  * @version $Revision: $
  */
 @Connector(
    reauthenticationSupport = false,
    transactionSupport = TransactionSupport.TransactionSupportLevel.NoTransaction)
-public class AcmeResourceAdapter implements ResourceAdapter, java.io.Serializable
+public class RestResourceAdapter implements ResourceAdapter, java.io.Serializable
 {
 
    /** The serial version UID */
    private static final long serialVersionUID = 1L;
 
    /** The logger */
-   private static Logger log = Logger.getLogger(AcmeResourceAdapter.class.getName());
+   private static Logger log = Logger.getLogger(RestResourceAdapter.class.getName());
 
    /**
     * Default constructor
     */
-   public AcmeResourceAdapter()
+   public RestResourceAdapter()
    {
 
    }
@@ -146,7 +146,7 @@ public class AcmeResourceAdapter implements ResourceAdapter, java.io.Serializabl
          return false;
       if (other == this)
          return true;
-      if (!(other instanceof AcmeResourceAdapter))
+      if (!(other instanceof RestResourceAdapter))
          return false;
       boolean result = true;
       return result;

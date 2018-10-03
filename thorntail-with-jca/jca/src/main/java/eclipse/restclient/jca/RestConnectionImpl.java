@@ -21,19 +21,65 @@
  */
 package eclipse.restclient.jca;
 
+import java.util.logging.Logger;
+
+import microprofile.restclient.RestConnection;
+
 /**
- * AcmeConnection
+ * RestConnectionImpl
  *
  * @version $Revision: $
  */
-public interface AcmeConnection
+public class RestConnectionImpl implements RestConnection
 {
+   /** The logger */
+   private static Logger log = Logger.getLogger(RestConnectionImpl.class.getName());
+
+   /** ManagedConnection */
+   private RestManagedConnection mc;
+
+   /** ManagedConnectionFactory */
+   private RestManagedConnectionFactory mcf;
+
+   /**
+    * Default constructor
+    * @param mc AcmeManagedConnection
+    * @param mcf AcmeManagedConnectionFactory
+    */
+   public RestConnectionImpl(RestManagedConnection mc, RestManagedConnectionFactory mcf)
+   {
+      this.mc = mc;
+      this.mcf = mcf;
+   }
+
    /**
     * Call me
     */
-   public void callMe();
+   public void callMe()
+   {
+      if (mc != null)
+         mc.callMe();
+   }
+
    /**
     * Close
     */
-   public void close();
+   public void close()
+   {
+      if (mc != null)
+      {
+         mc.closeHandle(this);
+         mc = null;
+      }
+
+   }
+
+   /**
+    * Set ManagedConnection
+    */
+   void setManagedConnection(RestManagedConnection mc)
+   {
+      this.mc = mc;
+   }
+
 }

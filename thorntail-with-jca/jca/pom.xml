@@ -105,6 +105,11 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>eclipse.restclient</groupId>
+    	<artifactId>api</artifactId>
+    	<version>1.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>

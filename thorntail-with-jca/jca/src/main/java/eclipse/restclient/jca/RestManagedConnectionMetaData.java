@@ -28,19 +28,19 @@ import javax.resource.ResourceException;
 import javax.resource.spi.ManagedConnectionMetaData;
 
 /**
- * AcmeManagedConnectionMetaData
+ * RestManagedConnectionMetaData
  *
  * @version $Revision: $
  */
-public class AcmeManagedConnectionMetaData implements ManagedConnectionMetaData
+public class RestManagedConnectionMetaData implements ManagedConnectionMetaData
 {
    /** The logger */
-   private static Logger log = Logger.getLogger(AcmeManagedConnectionMetaData.class.getName());
+   private static Logger log = Logger.getLogger(RestManagedConnectionMetaData.class.getName());
 
    /**
     * Default constructor
     */
-   public AcmeManagedConnectionMetaData()
+   public RestManagedConnectionMetaData()
    {
 
    }

@@ -39,23 +39,26 @@ import javax.resource.spi.ResourceAdapterAssociation;
 
 import javax.security.auth.Subject;
 
+import microprofile.restclient.RestConnection;
+import microprofile.restclient.RestConnectionFactory;
+
 /**
- * AcmeManagedConnectionFactory
+ * RestManagedConnectionFactory
  *
  * @version $Revision: $
  */
-@ConnectionDefinition(connectionFactory = AcmeConnectionFactory.class,
-   connectionFactoryImpl = AcmeConnectionFactoryImpl.class,
-   connection = AcmeConnection.class,
-   connectionImpl = AcmeConnectionImpl.class)
-public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, ResourceAdapterAssociation
+@ConnectionDefinition(connectionFactory = RestConnectionFactory.class,
+   connectionFactoryImpl = RestConnectionFactoryImpl.class,
+   connection = RestConnection.class,
+   connectionImpl = RestConnectionImpl.class)
+public class RestManagedConnectionFactory implements ManagedConnectionFactory, ResourceAdapterAssociation
 {
 
    /** The serial version UID */
    private static final long serialVersionUID = 1L;
 
    /** The logger */
-   private static Logger log = Logger.getLogger(AcmeManagedConnectionFactory.class.getName());
+   private static Logger log = Logger.getLogger(RestManagedConnectionFactory.class.getName());
 
    /** The resource adapter */
    private ResourceAdapter ra;
@@ -78,7 +81,7 @@ public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, R
    /**
     * Default constructor
     */
-   public AcmeManagedConnectionFactory()
+   public RestManagedConnectionFactory()
    {
 
    }
@@ -147,7 +150,7 @@ public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, R
    public Object createConnectionFactory(ConnectionManager cxManager) throws ResourceException
    {
       log.finest("createConnectionFactory()");
-      return new AcmeConnectionFactoryImpl(this, cxManager);
+      return new RestConnectionFactoryImpl(this, cxManager);
    }
 
    /**
@@ -173,7 +176,7 @@ public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, R
          ConnectionRequestInfo cxRequestInfo) throws ResourceException
    {
       log.finest("createManagedConnection()");
-      return new AcmeManagedConnection(this);
+      return new RestManagedConnection(this);
    }
 
    /**
@@ -194,7 +197,7 @@ public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, R
       while (result == null && it.hasNext())
       {
          ManagedConnection mc = (ManagedConnection)it.next();
-         if (mc instanceof AcmeManagedConnection)
+         if (mc instanceof RestManagedConnection)
          {
             result = mc;
          }
@@ -284,10 +287,10 @@ public class AcmeManagedConnectionFactory implements ManagedConnectionFactory, R
          return false;
       if (other == this)
          return true;
-      if (!(other instanceof AcmeManagedConnectionFactory))
+      if (!(other instanceof RestManagedConnectionFactory))
          return false;
       boolean result = true;
-      AcmeManagedConnectionFactory obj = (AcmeManagedConnectionFactory)other;
+      RestManagedConnectionFactory obj = (RestManagedConnectionFactory)other;
       if (result)
       {
          if (username == null)

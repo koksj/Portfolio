@@ -19,65 +19,21 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package eclipse.restclient.jca;
-
-import java.util.logging.Logger;
+package microprofile.restclient;
 
 /**
- * AcmeConnectionImpl
+ * AcmeConnection
  *
  * @version $Revision: $
  */
-public class AcmeConnectionImpl implements AcmeConnection
+public interface RestConnection
 {
-   /** The logger */
-   private static Logger log = Logger.getLogger(AcmeConnectionImpl.class.getName());
-
-   /** ManagedConnection */
-   private AcmeManagedConnection mc;
-
-   /** ManagedConnectionFactory */
-   private AcmeManagedConnectionFactory mcf;
-
-   /**
-    * Default constructor
-    * @param mc AcmeManagedConnection
-    * @param mcf AcmeManagedConnectionFactory
-    */
-   public AcmeConnectionImpl(AcmeManagedConnection mc, AcmeManagedConnectionFactory mcf)
-   {
-      this.mc = mc;
-      this.mcf = mcf;
-   }
-
    /**
     * Call me
     */
-   public void callMe()
-   {
-      if (mc != null)
-         mc.callMe();
-   }
-
+   public void callMe();
    /**
     * Close
     */
-   public void close()
-   {
-      if (mc != null)
-      {
-         mc.closeHandle(this);
-         mc = null;
-      }
-
-   }
-
-   /**
-    * Set ManagedConnection
-    */
-   void setManagedConnection(AcmeManagedConnection mc)
-   {
-      this.mc = mc;
-   }
-
+   public void close();
 }

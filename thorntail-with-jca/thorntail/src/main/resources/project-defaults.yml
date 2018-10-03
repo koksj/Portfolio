@@ -1,0 +1,21 @@
+swarm:
+  http:
+    port: 8080  
+  resource-adapters:
+    resource-adapters:
+       eclipse.restclient.jca:
+         archive: eclipse.restclient.jca.rar
+         transaction-support: NoTransaction
+         connection-definitions:
+            RestConnectionFactoryPool:
+               class-name: microprofile.restclient.RestConnectionFactory
+               jndi-name: java:/eis/RestConnectionFactory
+               config-properties:
+                  restUrl:
+                     value: http://localhost:8080
+                  username: 
+                     value: your-user-name
+                  password: 
+                     value: your-password
+  deployment:
+    microprofile.restclient:eclipse.restclient.jca.rar:

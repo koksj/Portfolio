@@ -37,43 +37,44 @@ import javax.resource.spi.ConnectionRequestInfo;
 import javax.resource.spi.LocalTransaction;
 import javax.resource.spi.ManagedConnection;
 import javax.resource.spi.ManagedConnectionMetaData;
-
 import javax.security.auth.Subject;
 import javax.transaction.xa.XAResource;
 
+import microprofile.restclient.RestConnection;
+
 /**
- * AcmeManagedConnection
+ * RestManagedConnection
  *
  * @version $Revision: $
  */
-public class AcmeManagedConnection implements ManagedConnection
+public class RestManagedConnection implements ManagedConnection
 {
 
    /** The logger */
-   private static Logger log = Logger.getLogger(AcmeManagedConnection.class.getName());
+   private static Logger log = Logger.getLogger(RestManagedConnection.class.getName());
 
    /** The logwriter */
    private PrintWriter logwriter;
 
    /** ManagedConnectionFactory */
-   private AcmeManagedConnectionFactory mcf;
+   private RestManagedConnectionFactory mcf;
 
    /** Listeners */
    private List<ConnectionEventListener> listeners;
 
    /** Connections */
-   private Set<AcmeConnectionImpl> connections;
+   private Set<RestConnectionImpl> connections;
 
    /**
     * Default constructor
     * @param mcf mcf
     */
-   public AcmeManagedConnection(AcmeManagedConnectionFactory mcf)
+   public RestManagedConnection(RestManagedConnectionFactory mcf)
    {
       this.mcf = mcf;
       this.logwriter = null;
       this.listeners = Collections.synchronizedList(new ArrayList<ConnectionEventListener>(1));
-      this.connections = new HashSet<AcmeConnectionImpl>();
+      this.connections = new HashSet<RestConnectionImpl>();
    }
 
    /**
@@ -89,7 +90,7 @@ public class AcmeManagedConnection implements ManagedConnection
       ConnectionRequestInfo cxRequestInfo) throws ResourceException
    {
       log.finest("getConnection()");
-      AcmeConnectionImpl connection = new AcmeConnectionImpl(this, mcf);
+      RestConnectionImpl connection = new RestConnectionImpl(this, mcf);
       connections.add(connection);
       return connection;
    }
@@ -108,10 +109,10 @@ public class AcmeManagedConnection implements ManagedConnection
       if (connection == null)
          throw new ResourceException("Null connection handle");
 
-      if (!(connection instanceof AcmeConnectionImpl))
+      if (!(connection instanceof RestConnectionImpl))
          throw new ResourceException("Wrong connection handle");
 
-      AcmeConnectionImpl handle = (AcmeConnectionImpl)connection;
+      RestConnectionImpl handle = (RestConnectionImpl)connection;
       handle.setManagedConnection(this);
       connections.add(handle);
    }
@@ -124,7 +125,7 @@ public class AcmeManagedConnection implements ManagedConnection
    public void cleanup() throws ResourceException
    {
       log.finest("cleanup()");
-      for (AcmeConnectionImpl connection : connections)
+      for (RestConnectionImpl connection : connections)
       {
          connection.setManagedConnection(null);
       }
@@ -174,9 +175,9 @@ public class AcmeManagedConnection implements ManagedConnection
     *
     * @param handle The handle
     */
-   void closeHandle(AcmeConnection handle)
+   void closeHandle(RestConnection handle)
    {
-      connections.remove((AcmeConnectionImpl)handle);
+      connections.remove((RestConnectionImpl)handle);
       ConnectionEvent event = new ConnectionEvent(this, ConnectionEvent.CONNECTION_CLOSED);
       event.setConnectionHandle(handle);
       for (ConnectionEventListener cel : listeners)
@@ -241,7 +242,7 @@ public class AcmeManagedConnection implements ManagedConnection
    public ManagedConnectionMetaData getMetaData() throws ResourceException
    {
       log.finest("getMetaData()");
-      return new AcmeManagedConnectionMetaData();
+      return new RestManagedConnectionMetaData();
    }
 
    /**

@@ -28,7 +28,8 @@
              http://www.ironjacamar.org/doc/schema/ironjacamar_1_1.xsd">
 
   <transaction-support>NoTransaction</transaction-support>
-  
+ <!--  Commented as deployment is handle via the  project-defaults.yml file. If you want this file to control the jca deployment then
+uncomment this. 
   <connection-definitions>
     <connection-definition class-name="eclipse.restclient.jca.AcmeManagedConnectionFactory" jndi-name="java:/eis/AcmeConnectionFactory" pool-name="AcmeConnectionFactory">
       <config-property name="username">username</config-property>
@@ -36,6 +37,5 @@
       <config-property name="restUrl">http://localhost:8080</config-property>
     </connection-definition>
   </connection-definitions>
-
-
+ -->
 </ironjacamar>

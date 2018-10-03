@@ -29,24 +29,27 @@ import javax.naming.Reference;
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
 
+import microprofile.restclient.RestConnection;
+import microprofile.restclient.RestConnectionFactory;
+
 /**
- * AcmeConnectionFactoryImpl
+ * RestConnectionFactoryImpl
  *
  * @version $Revision: $
  */
-public class AcmeConnectionFactoryImpl implements AcmeConnectionFactory
+public class RestConnectionFactoryImpl implements RestConnectionFactory
 {
    /** The serial version UID */
    private static final long serialVersionUID = 1L;
 
    /** The logger */
-   private static Logger log = Logger.getLogger(AcmeConnectionFactoryImpl.class.getName());
+   private static Logger log = Logger.getLogger(RestConnectionFactoryImpl.class.getName());
 
    /** Reference */
    private Reference reference;
 
    /** ManagedConnectionFactory */
-   private AcmeManagedConnectionFactory mcf;
+   private RestManagedConnectionFactory mcf;
 
    /** ConnectionManager */
    private ConnectionManager connectionManager;
@@ -54,7 +57,7 @@ public class AcmeConnectionFactoryImpl implements AcmeConnectionFactory
    /**
     * Default constructor
     */
-   public AcmeConnectionFactoryImpl()
+   public RestConnectionFactoryImpl()
    {
 
    }
@@ -64,7 +67,7 @@ public class AcmeConnectionFactoryImpl implements AcmeConnectionFactory
     * @param mcf ManagedConnectionFactory
     * @param cxManager ConnectionManager
     */
-   public AcmeConnectionFactoryImpl(AcmeManagedConnectionFactory mcf, ConnectionManager cxManager)
+   public RestConnectionFactoryImpl(RestManagedConnectionFactory mcf, ConnectionManager cxManager)
    {
       this.mcf = mcf;
       this.connectionManager = cxManager;
@@ -77,10 +80,10 @@ public class AcmeConnectionFactoryImpl implements AcmeConnectionFactory
     * @exception ResourceException Thrown if a connection can't be obtained
     */
    @Override
-   public AcmeConnection getConnection() throws ResourceException
+   public RestConnection getConnection() throws ResourceException
    {
       log.finest("getConnection()");
-      return (AcmeConnection)connectionManager.allocateConnection(mcf, null);
+      return (RestConnection)connectionManager.allocateConnection(mcf, null);
    }
 
    /**

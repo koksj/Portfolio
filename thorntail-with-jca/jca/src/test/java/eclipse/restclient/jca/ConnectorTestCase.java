@@ -35,6 +35,10 @@ import org.jboss.shrinkwrap.api.spec.ResourceAdapterArchive;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import microprofile.restclient.AcmeConnection;
+import microprofile.restclient.AcmeConnectionFactory;
+
 import static org.junit.Assert.*;
 
 /**

@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package eclipse.restclient.jca;
+package microprofile.restclient;
 
 import java.io.Serializable;
 
@@ -31,7 +31,7 @@ import javax.resource.ResourceException;
  *
  * @version $Revision: $
  */
-public interface AcmeConnectionFactory extends Serializable, Referenceable
+public interface RestConnectionFactory extends Serializable, Referenceable
 {
    /** 
     * Get connection from factory
@@ -39,6 +39,6 @@ public interface AcmeConnectionFactory extends Serializable, Referenceable
     * @return AcmeConnection instance
     * @exception ResourceException Thrown if a connection can't be obtained
     */
-   public AcmeConnection getConnection() throws ResourceException;
+   public RestConnection getConnection() throws ResourceException;
 
 }

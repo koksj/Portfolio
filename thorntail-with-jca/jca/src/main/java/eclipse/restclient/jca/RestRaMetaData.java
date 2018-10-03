@@ -24,16 +24,16 @@ package eclipse.restclient.jca;
 import javax.resource.cci.ResourceAdapterMetaData;
 
 /**
- * AcmeRaMetaData
+ * RestRaMetaData
  *
  * @version $Revision: $
  */
-public class AcmeRaMetaData implements ResourceAdapterMetaData
+public class RestRaMetaData implements ResourceAdapterMetaData
 {
    /**
     * Default constructor
     */
-   public AcmeRaMetaData()
+   public RestRaMetaData()
    {
 
    }
