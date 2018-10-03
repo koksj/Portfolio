@@ -5,5 +5,5 @@ This is an example how to deploy a JCA 1.7 outbounb connector generated with Iro
 
 
 
-# References
+
 [1]: http://www.ironjacamar.org/ "IronJacamar"
